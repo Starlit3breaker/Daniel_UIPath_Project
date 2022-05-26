@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="D9_Lab_For_Each_Activity" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="789,2095" sap2010:WorkflowViewState.IdRef="D9_Lab_For_Each_Activity_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="D9_Lab_For_Each_Activity" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="789,2206" sap2010:WorkflowViewState.IdRef="D9_Lab_For_Each_Activity_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -59,19 +59,18 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="D9_Lab_For_Each_Activity" sap:VirtualizedContainerService.HintSize="594,2030" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="D9_Lab_For_Each_Activity" sap:VirtualizedContainerService.HintSize="594,2141" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap2010:Annotation.AnnotationText="1. Locate and select a folder containing multiple files.&#xD;&#xA;&#xD;&#xA;2. List the directory path of all the files in the Output panel.&#xD;&#xA;&#xD;&#xA;3. Store the updated names in MS Word file and save and close it." DisplayName="Sequence – ‘'This code is to write all the file names in MS Word present in a particular folder" sap:VirtualizedContainerService.HintSize="552,1938" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="1. Locate and select a folder containing multiple files.&#xA;&#xA;2. List the directory path of all the files in the Output panel.&#xA;&#xA;3. Store the updated names in MS Word file and save and close it." DisplayName="Sequence – ‘'This code is to write all the file names in MS Word present in a particular folder" sap:VirtualizedContainerService.HintSize="552,2049" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="FolderName" />
         <Variable x:TypeArguments="s:String[]" Name="FileList" />
@@ -83,7 +82,8 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:SelectFolder sap2010:Annotation.AnnotationText="User selects a folder" DisplayName="Browse for folder" sap:VirtualizedContainerService.HintSize="510,109" sap2010:WorkflowViewState.IdRef="SelectFolder_1" SelectedFolder="[FolderName]">
+      <ui:Comment sap:VirtualizedContainerService.HintSize="510,74" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Make sure to open a blank microsoft word file for the com to copy the files into" />
+      <ui:SelectFolder sap2010:Annotation.AnnotationText="User selects a folder for the files that you want copied" DisplayName="Browse for folder" sap:VirtualizedContainerService.HintSize="510,109" sap2010:WorkflowViewState.IdRef="SelectFolder_1" SelectedFolder="[FolderName]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -95,7 +95,7 @@
           <OutArgument x:TypeArguments="s:String[]">[FileList]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles.(FolderName)]</InArgument>
+          <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(FolderName)]</InArgument>
         </Assign.Value>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -103,13 +103,13 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="Attach MS Word window" DisplayName="Attach Window - MS Word" sap:VirtualizedContainerService.HintSize="510,1468" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="07a1d6991921dd785227aed0f9d46612" Selector="&lt;wnd app='winword.exe' cls='OpusApp' title='*' /&gt;">
+      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="Attach MS Word window" DisplayName="Attach Window - MS Word" sap:VirtualizedContainerService.HintSize="510,1465" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="07a1d6991921dd785227aed0f9d46612" Selector="&lt;wnd app='winword.exe' cls='OpusApp' title='*' /&gt;">
         <ui:WindowScope.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1291" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1288" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -160,7 +160,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:ForEach>
-              <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Pressing F12 key opens the 'Save As' Dialog box &#xD;&#xA;in the MS Word" DisplayName="Send Hotkey - Open the Save As dialog " sap:VirtualizedContainerService.HintSize="434,194" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f12" KeyModifiers="None" SpecialKey="True">
+              <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Pressing F12 key opens the 'Save As' Dialog box &#xA;in the MS Word" DisplayName="Send Hotkey - Open the Save As dialog " sap:VirtualizedContainerService.HintSize="434,194" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f12" KeyModifiers="None" SpecialKey="True">
                 <ui:SendHotkey.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d93ff4fa-e48d-4cb6-9138-68e496b8eb76" InformativeScreenshot="54d238c38027427371253122095b23df" Selector="&lt;uia automationid='UIA_AutomationId_Word_Content_Page_1' name='Page 1 content' role='edit' /&gt;">
                     <ui:Target.TimeoutMS>
@@ -177,19 +177,9 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:SendHotkey>
-              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="Press Save button from Save As pop Dialog box" ClickType="CLICK_SINGLE" DisplayName="Click ‘Save’ button" sap:VirtualizedContainerService.HintSize="434,137" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
-                <ui:Click.CursorPosition>
-                  <ui:CursorPosition Position="Center">
-                    <ui:CursorPosition.OffsetX>
-                      <InArgument x:TypeArguments="x:Int32" />
-                    </ui:CursorPosition.OffsetX>
-                    <ui:CursorPosition.OffsetY>
-                      <InArgument x:TypeArguments="x:Int32" />
-                    </ui:CursorPosition.OffsetY>
-                  </ui:CursorPosition>
-                </ui:Click.CursorPosition>
-                <ui:Click.Target>
-                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="03d852a9-41e6-44d0-9549-0c5cc996cf0d" InformativeScreenshot="4884b7fcf81e7bc660e5b22727d93cbf" Selector="&lt;uia cls='NetUIRibbonTab' name='Save As' /&gt;">
+              <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'Edit'" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[Environment.CurrentDirectory + &quot;\output\sample_&quot; + Now.ToString(&quot;dd_MM_yyyy_HH_mm&quot;) + &quot;[k(enter)]&quot;]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="54519b0a-ddca-457b-b906-b4ed08a74f14" InformativeScreenshot="5b6d1b7025c45d498a4cbcc0e45fd98a" Selector="&lt;wnd app='winword.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
                     <ui:Target.TimeoutMS>
                       <InArgument x:TypeArguments="x:Int32" />
                     </ui:Target.TimeoutMS>
@@ -197,13 +187,8 @@
                       <InArgument x:TypeArguments="ui:WaitForReady" />
                     </ui:Target.WaitForReady>
                   </ui:Target>
-                </ui:Click.Target>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:Click>
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
               <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Press 'Alt+F4' key to close the MS Word window" DisplayName="Send Hotkey - 'To close the application" sap:VirtualizedContainerService.HintSize="434,183" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="f4" KeyModifiers="Alt" SpecialKey="True">
                 <ui:SendHotkey.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c5cd9450-5f35-41e0-bb09-bcdddf1f4451" InformativeScreenshot="ffdf6ae5784f10aedf7e81e8a0379f9e" Selector="&lt;uia automationid='UIA_AutomationId_Word_Content_Page_1' name='Page 1 content' role='edit' /&gt;">
